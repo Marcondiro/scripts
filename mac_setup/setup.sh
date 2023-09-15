@@ -6,8 +6,9 @@ git -v >/dev/null
 # Install Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# Add brew to path and reload profile
-(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+# Add brew to path and reload profile if not present already
+grep -q 'eval "$(/opt/homebrew/bin/brew shellenv)"' ~/.zprofile || \
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
 eval "\$(/opt/homebrew/bin/brew shellenv)"
 
 # Install brew formulae
